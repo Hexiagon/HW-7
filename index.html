@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    
+    <title>Favorite Restaurant List Notes</title>
+</head>
+<body>
+    
+    <!--Start main page-->
+    <div data-role="page" id="home">
+        <div data-role="header" data-theme="a">
+            <h2>Favorite Restaurants</h2>
+            <div data-role="navbar" data-theme="a">
+                <ul>
+                    <li><a href="#list" data-transition="slideup">Favorite Resturants List Notes</a></li>
+                    <li><a href="#add" data-transition="slideup">Add your Favorite Resturant Note</a></li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="content" data-theme="a">
+            This is a website where you can add and keep your Favorite Restaurants.
+        </div>
+        <div data-role="footer" data-theme="a">
+            <h3>Copyright 2024 by Hexiagon and Anh</h3>
+        </div>
+    </div>
+    
+    <!--end main page-->
+
+    <!--start page 2: Favorite Restaurant List-->
+    <div data-role="page" id="list">
+        <div data-role="header" data-theme="a">
+            <div data-role="navbar" data-theme="a">
+                <ul>
+                    <li><a href="#home">Home Page</a></li>
+                    <li><a href="#add">Add your Favorite Restaurant Note</a></li>
+                </ul>
+            </div>
+            <h2>Favorite Restaurants List</h2>
+            <br><br>
+        </div>
+        <div data-role="content" data-theme="a">
+            <ul id="myul" data-role="listview"></ul>
+        </div>
+        <div data-role="footer" data-theme="a">
+            <h3>Copyright 2024 by Hexiagon and Anh</h3>
+        </div>
+    </div>
+    <!--end page 2-->
+
+    <!--start page 3: Add Favorite Restaurants-->
+    <div data-role="page" id="add">
+        <div data-role="header" data-theme="a">
+            <div data-role="navbar" data-theme="a">
+                <ul>
+                    <li><a href="#home">Home Page</a></li>
+                    <li><a href="#list">Favorite Restaurants List Notes</a></li>
+                </ul>
+            </div>
+            <h2>Add your Favorite Resturant Note</h2>
+        </div>
+        <div data-role="content" data-theme="a">
+            Enter Favorite Restaurant note priority <br />
+            <input type="text" value="" id="priorityInput" /><br />
+            Enter the Favorite Restaurant note<br>
+            <input type="text" value="" id="dataInput" />
+            Enter the Favorite Restaurant Address<br>
+            <input type="text" value="" id="addressInput" />
+            <label for="select-type">Select a Favorite Restaurant Type</label>
+            <select name="select-type" id="select-type">
+                <option value="Fast-food">Fast food</option>
+                <option value="Food-truck">Food truck</option>
+                <option value="Cafe">Cafe</option>
+            </select>
+
+            <!--Star-->
+            <label for="star-rating">Select a Favorite Restaurant Type</label>
+            <select name="star-rating" id="star-rating">
+                <option value="1 Star">1 Star</option>
+                <option value="2 Stars">2 Stars</option>
+                <option value="3 Stars">3 Stars</option>
+                <option value="4 Stars">4 Stars</option>
+                <option value="5 Stars">5 Stars</option>
+            </select>
+
+            <button id="buttonAdd">Add Favorite Restaurant Note</button>
+            <br>
+            <a href="#popupMenu" data-rel="popup" data-transition="slideup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-gear ui-btn-icon-left ui-btn-a">All Pages:</a>
+                <div data-role="popup" id="popupMenu" data-theme="a">
+                    <ul data-role="listview" data-inset="true" style="min-width:210px;">
+                        <li data-role="list-divider">Choose an action</li>
+                        <li><a href="#home" data-transition="flow" >Back to Home</a></li>
+                        <li><a href="#list" data-transition="fade" >Back to Favorite Resturants List Notes</a></li>
+                    </ul>
+                </div>
+        </div>
+        <div data-role="footer" data-theme="a">
+            <h3>Copyright 2024 by Hexiagon and Anh</h3>
+        </div>
+    </div>
+    <!--end page 3-->
+</body>
+</html>
