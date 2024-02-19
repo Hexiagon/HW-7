@@ -18,16 +18,19 @@
     <!--Start main page-->
     <div data-role="page" id="home">
         <div data-role="header" data-theme="a">
-            <h2>Favorite Restaurants</h2>
+            <h3>Favorite Restaurants</h3>
             <div data-role="navbar" data-theme="a">
                 <ul>
                     <li><a href="#list" data-transition="slideup">Favorite Resturants List Notes</a></li>
-                    <li><a href="#add" data-transition="slideup">Add your Favorite Resturant Note</a></li>
+                    <li><a href="#add" data-transition="slideup">Add your Favorite Resturant</a></li>
                 </ul>
             </div>
         </div>
         <div data-role="content" data-theme="a">
-            This is a website where you can add and keep your Favorite Restaurants.
+            <div class="newFont">
+                This is a website where you can add, rate on a 1-5, remove, and keep your Favorite Restaurants.
+                You can also select the type of resturant, organize your list, and add an address to your favorite resturant.
+            </div>
         </div>
         <div data-role="footer" data-theme="a">
             <h3>Copyright 2024 by Hexiagon and Anh</h3>
@@ -42,14 +45,16 @@
             <div data-role="navbar" data-theme="a">
                 <ul>
                     <li><a href="#home">Home Page</a></li>
-                    <li><a href="#add">Add your Favorite Restaurant Note</a></li>
+                    <li><a href="#add">Add your Favorite Restaurant</a></li>
                 </ul>
             </div>
-            <h2>Favorite Restaurants List</h2>
+            <h3>My Favorite Restaurants List</h3>
             <br><br>
         </div>
         <div data-role="content" data-theme="a">
+            <h3>Here are my Favorite Resturants</h3>
             <ul id="myul" data-role="listview"></ul>
+            <table id="tableID"></table>
         </div>
         <div data-role="footer" data-theme="a">
             <h3>Copyright 2024 by Hexiagon and Anh</h3>
@@ -66,14 +71,15 @@
                     <li><a href="#list">Favorite Restaurants List Notes</a></li>
                 </ul>
             </div>
-            <h2>Add your Favorite Resturant Note</h2>
+            <h3>Add your Favorite Resturant</h3>
         </div>
         <div data-role="content" data-theme="a">
-            Enter Favorite Restaurant note priority <br />
+            <h3>Enter your Favorite Resturant</h3>
+            Enter your Favorite Restaurant note priority. Example: (1 being most favorite, 2 being second most favorite, etc.)<br />
             <input type="text" value="" id="priorityInput" /><br />
-            Enter the Favorite Restaurant note<br>
+            Enter Favorite Restaurant name<br>
             <input type="text" value="" id="dataInput" />
-            Enter the Favorite Restaurant Address<br>
+            Enter Favorite Restaurant Address<br>
             <input type="text" value="" id="addressInput" />
             <label for="select-type">Select a Favorite Restaurant Type</label>
             <select name="select-type" id="select-type">
@@ -81,27 +87,22 @@
                 <option value="Food-truck">Food truck</option>
                 <option value="Cafe">Cafe</option>
             </select>
+            Enter Favorite Restaurant Online Home Page (URL)<br>
+            <input type="text" value="" id="URLInput" />
 
             <!--Star-->
-            <label for="star-rating">Select a Favorite Restaurant Type</label>
-            <select name="star-rating" id="star-rating">
-                <option value="1 Star">1 Star</option>
-                <option value="2 Stars">2 Stars</option>
-                <option value="3 Stars">3 Stars</option>
-                <option value="4 Stars">4 Stars</option>
-                <option value="5 Stars">5 Stars</option>
-            </select>
-
-            <button id="buttonAdd">Add Favorite Restaurant Note</button>
-            <br>
-            <a href="#popupMenu" data-rel="popup" data-transition="slideup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-gear ui-btn-icon-left ui-btn-a">All Pages:</a>
-                <div data-role="popup" id="popupMenu" data-theme="a">
-                    <ul data-role="listview" data-inset="true" style="min-width:210px;">
-                        <li data-role="list-divider">Choose an action</li>
-                        <li><a href="#home" data-transition="flow" >Back to Home</a></li>
-                        <li><a href="#list" data-transition="fade" >Back to Favorite Resturants List Notes</a></li>
-                    </ul>
-                </div>
+            <div class="ui-field-contain">
+                <label for="star-rating">Select your preferred star rating</label>
+                <select name="star-rating" id="star-rating">
+                    <option value="1 Star">1 Star</option>
+                    <option value="2 Stars">2 Stars</option>
+                    <option value="3 Stars">3 Stars</option>
+                    <option value="4 Stars">4 Stars</option>
+                    <option value="5 Stars">5 Stars</option>
+                </select>
+            </div>
+            <input type="button" value="Click to add Favorite Resturant" id="buttonAdd" data-inline="true" />
+            <input type="button" value="Clear Data" id="buttonClear" data-inline="true" />
         </div>
         <div data-role="footer" data-theme="a">
             <h3>Copyright 2024 by Hexiagon and Anh</h3>
