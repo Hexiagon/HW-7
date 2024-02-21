@@ -1,62 +1,112 @@
 let NoteArray = [];
 
-let NoteObject = function (pData, pType, pPriority, pAddress, pStar, pID, pURL){
-    this.data= pData;
-    this.type= pType;
-    this.priority = pPriority;
-    this.address = pAddress;
-    this.star = pStar;
+let NoteObject = function (pID, pName, pType, pAddress, pStar, pURL){
     this.ID= pID;
-    this.ID= NoteArray.length+1;
-    this.URL=pURL;
+    this.Name= pName;
+    this.Type= pType;
+    this.ID= NoteArray.length + 1;
+    this.Address = pAddress;
+    this.Star = pStar;
+    this.URL= pURL;
 }
 
-NoteArray.push (new NoteObject("McDonald", "Fast Food", 1, "3239 156th Ave SE, Bellevue, WA 98007", "5 Stars", 1, ));
-NoteArray.push (new NoteObject("Rain Cafe", "Cafe", 2, "13200 Aurora Ave N suite c, Seattle, WA 98133", "4 Stars", 2, ));
-NoteArray.push (new NoteObject("El Gran Taco", "Food Truck", 3, "Seattle, WA 98122", "5 Stars", 3, ));
+NoteArray.push (new NoteObject(1, "McDonald", "Fast Food", "3239 156th Ave SE, Bellevue, WA 98007", "5 Stars", "https://www.mcdonalds.com/us/en-us.html" ));
+NoteArray.push (new NoteObject(2, "Rain Cafe", "Cafe", "13200 Aurora Ave N suite c, Seattle, WA 98133", "4 Stars", "https://www.orderraincafe.com/"));
+NoteArray.push (new NoteObject(3, "El Gran Taco", "Food Truck", "Seattle, WA 98122", "5 Stars", "https://elgrantacoseattle.com/home.php"));
 
 
-let selectedType = "";
-let starRating ="";
-document.addEventListener("DOMContentLoaded", function(event){
+let selectedType = "not selected";
+let starRating ="not selected";
+document.addEventListener("DOMContentLoaded", function(){
 
     createList();
 
     document.getElementById("buttonAdd").addEventListener("click", function (){
 
-        NoteArray.push (new NoteObject(document.getElementById("dataInput").value, selectedType, 
-        document.getElementById("priorityInput").value, document.getElementById("addressInput").value, starRating, NoteObject.length+1, 
-        document.getElementById("URLInput").value));
+        NoteArray.push(new NoteObject(document.getElementById("name").value, 
+        selectedType, 
+        document.getElementById("address").value, 
+        starRating, 
+        NoteArray.length, 
+        document.getElementById("URL").value));
         document.location.href="index.html#list";
     });
 
-    $(document).bind("change", "#select-type", function (event, ui){
-        selectedType = document.getElementById("select-type").value;
-    });
-    $(document).bind("change", "#star-rating", function (event, ui){
-        starRating = document.getElementById("star-rating").value;
-    });
 
     document.getElementById("buttonClear").addEventListener("click", function(){
-        document.getElementById("dataInput").value="";
-        document.getElementById("priorityInput").value="";
-        document.getElementById("addressInput").value="";
-        document.getElementById("URLInput").value="";
+        document.getElementById("name").value="";
+        document.getElementById("address").value="";
+        document.getElementById("URL").value="";
+    });
+    
+    document.addEventListener("change", function(event){
+        if (event.target.id === "select-type") {
+            selectedType = event.target.value;
+        }
+    });
+    
+    document.addEventListener("change", function(event){
+        if (event.target.id === "star-rating") {
+            starRating = event.target.value;
+        }
+    });
+
+    $(document).on("pagebeforeshow", "#list", function(event){ //jQuery
+        createList();
     });
 });
-$(document).on("pagebeforeshow", "#list", function(event){ //jQuery
-    createList();
-});
+
 //create the function to add list 
 function createList(){
-    var myul = document.getElementById("myul");
-    myul.innerHTML = "";
+    const theTable = document.getElementById('tableID');
+    theTable.innerHTML="";
 
-    NoteArray.forEach(function (element,) {
-        var li = document.createElement('li');
-        li.innerHTML = element.ID +" | "+ element.priority + ": " + element.type + " | " 
-                    + element.data + " | " + element.address + " | " +
-                    element.star;
-        myul.appendChild(li);
-    });
+    //add the headings
+    theTable.innerHTML ="<thead><th>ID</th><th>Name</th><th>Type</th><th>Address</th><th>Rating</th></thead>";
+
+    //add the row
+    for(oneRts of NoteArray){
+        const newRow = document.createElement("tr");
+        const tdID = document.createElement("td");
+        const tdName = document.createElement("td");
+        const tdType = document.createElement("td");
+        const tdAddress = document.createElement("td");
+        const tdRating = document.createElement("td");
+        tdID.textContent = oneRts.ID;
+        tdName.textContent = oneRts.Name;
+        tdType.textContent = oneRts.Type;
+        tdAddress.textContent = oneRts.Address;
+        tdRating.textContent = oneRts.Star;
+        newRow.appendChild(tdID);
+        newRow.appendChild(tdName);
+        newRow.appendChild(tdType);
+        newRow.appendChild(tdAddress);
+        newRow.appendChild(tdRating);
+        theTable.appendChild(newRow);
+    }
+
+    //add row click event handlers
+    var table = document.getElementById("tableID");
+    var rows = table.getElementsByTagName("tr");
+    for (i = 0; i < rows.length; i++){
+        var currentRow = table.rows[i];
+        var createClickHandler =
+            function(row)
+            {
+                return function() {
+                    var cell = row.getElementsByTagName("td")[0];
+                    var whichID = cell.innerHTML;
+                    alert(whichID);
+                    openWebsite(whichID);
+                };
+            };
+        currentRow.onclick = createClickHandler(currentRow);
+    }
 };
+function openWebsite(which){
+    for(let i = 0; i < NoteArray.length; i++){
+        if(which == NoteArray[i].ID){
+            window.open(NoteArray[i].URL);
+        }
+    }
+}
