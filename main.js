@@ -94,7 +94,6 @@ function createList(){
                 return function() {
                     var cell = row.getElementsByTagName("td")[0];
                     var whichID = cell.innerHTML;
-                    alert(whichID);
                     openWebsite(whichID);
                 };
             };
